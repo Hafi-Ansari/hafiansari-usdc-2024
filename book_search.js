@@ -112,4 +112,22 @@ if (test2result.Results.length == 1) {
   console.log("Received:", test2result.Results.length);
 }
 
+/** Test Case 3: Case-Sensitive Test - "The" vs "the" */
+const test3result = findSearchTermInBooks("The", twentyLeaguesIn);
+if (JSON.stringify(test3result) !== JSON.stringify(twentyLeaguesOut)) {
+  console.log("PASS: Test 3 (Case-Sensitive Test)");
+} else {
+  console.log("FAIL: Test 3 (Case-Sensitive Test)");
+  console.log("Expected different results for 'The'");
+  console.log("Received:", test3result);
+}
 
+/** Test Case 4: Negative Test - Word "xyz" does not exist */
+const test4result = findSearchTermInBooks("xyz", twentyLeaguesIn);
+if (test4result.Results.length === 0) {
+  console.log("PASS: Test 4 (Negative Test)");
+} else {
+  console.log("FAIL: Test 4 (Negative Test)");
+  console.log("Expected 0 results for 'xyz'");
+  console.log("Received:", test4result.Results.length, "results");
+}
