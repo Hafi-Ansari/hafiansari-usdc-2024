@@ -131,3 +131,70 @@ if (test4result.Results.length === 0) {
   console.log("Expected 0 results for 'xyz'");
   console.log("Received:", test4result.Results.length, "results");
 }
+
+/** Test Case 5: Empty String Test - Searching with empty string */
+const test5result = findSearchTermInBooks("", twentyLeaguesIn);
+if (test5result.Results.length === 0) {
+  console.log("PASS: Test 5 (Empty String Test)");
+} else {
+  console.log("FAIL: Test 5 (Empty String Test)");
+  console.log("Expected 0 results for empty string");
+  console.log("Received:", test5result.Results.length, "results");
+}
+
+/** Test Case 6: Special Characters Test - Searching "Canadian's" */
+const test6result = findSearchTermInBooks("Canadian's", twentyLeaguesIn);
+if (test6result.Results.length > 0) {
+  console.log("PASS: Test 6 (Special Characters Test)");
+} else {
+  console.log("FAIL: Test 6 (Special Characters Test)");
+  console.log("Expected results for 'Canadian's'");
+  console.log("Received:", test6result.Results.length, "results");
+}
+
+/** Test Case 7: Full Text Match Test - Searching a complete line of text */
+const fullText = "now simply went on by her own momentum.  The dark-";
+const test7result = findSearchTermInBooks(fullText, twentyLeaguesIn);
+if (test7result.Results.length === 1) {
+  console.log("PASS: Test 7 (Full Text Match Test)");
+} else {
+  console.log("FAIL: Test 7 (Full Text Match Test)");
+  console.log("Expected 1 result for the full text search");
+  console.log("Received:", test7result.Results.length, "results");
+}
+
+/** Test Case 8: No Content Test - Book with empty content */
+const emptyContentBook = [{
+  "Title": "Empty Book",
+  "ISBN": "0000000000",
+  "Content": []
+}];
+const test8result = findSearchTermInBooks("any", emptyContentBook);
+if (test8result.Results.length === 0) {
+  console.log("PASS: Test 8 (No Content Test)");
+} else {
+  console.log("FAIL: Test 8 (No Content Test)");
+  console.log("Expected 0 results for a book with no content");
+  console.log("Received:", test8result.Results.length, "results");
+}
+
+/** Test Case 9: Multiple Matches Test */
+// Note: This test requires 'twentyLeaguesIn' to contain a term that appears on multiple lines.
+const test9result = findSearchTermInBooks("multiple", twentyLeaguesIn); 
+if (test9result.Results.length > 1) {
+  console.log("PASS: Test 9 (Multiple Matches Test)");
+} else {
+  console.log("FAIL: Test 9 (Multiple Matches Test)");
+  console.log("Expected multiple results for 'multiple'");
+  console.log("Received:", test9result.Results.length, "results");
+}
+
+/** Test Case 10: No Books Test - Empty books array */
+const test10result = findSearchTermInBooks("any", []);
+if (test10result.Results.length === 0) {
+  console.log("PASS: Test 10 (No Books Test)");
+} else {
+  console.log("FAIL: Test 10 (No Books Test)");
+  console.log("Expected 0 results for empty book array");
+  console.log("Received:", test10result.Results.length, "results");
+}
